@@ -12,24 +12,19 @@ steps:
 - name: Some Script
   image: some/plugin
 - name: Gotify Notification
-  image:  imoshtokill/drone-gotify-plugin
+  image:  imoshtokill/drone-gotify-plugin:v1
   settings:
     token:
       from_secret: gotify_token
     gotify_url: 'https://gotify.myawesomedomain.com'
-    title: >
-      {{#success build.status}}
-        Drone Job {{build.number}} Successful
-      {{else}}
-        Drone Job {{build.number}} FAILED
-      {{/success}}
+    # title is optional, defaults to:
+    # ${DRONE_REPO_NAME}:${DRONE_BUILD_NUMBER} ${DRONE_BUILD_STATUS}
+    title: Some title here
+    # priority is optional, defaults to 5
     priority: 9
-    message: >
-      {{#success build.status}}
-        build {{build.number}} succeeded on {{repo.name}}. Good job {{build.author}}  {{build.link}}
-      {{else}}
-        build {{build.number}} failed on {{repo.name}}. Fix me please {{build.author}}  {{build.link}}
-      {{/success}}
+    # message is optional, defaults to:
+    #Build ${DRONE_BUILD_NUMBER} of ${DRONE_REPO}: (${DRONE_COMMIT_MESSAGE}): ${DRONE_BUILD_LINK}
+    message: Some message
   when:
     status: [ success, failure ]
 ```
