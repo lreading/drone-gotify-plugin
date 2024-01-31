@@ -2,7 +2,7 @@
 A very simple [Drone](https://www.drone.io) plugin to send a notification to [Gotify](https://gotify.net).
 
 ## Notes
-I recommend having different steps for success/failure, as the plugin does not seem to be aware of the previous step.
+I recommend having different steps for success/failure, as the plugin does not seem to be aware of the previous step, so DRONE_BUILD_STATUS seems to always be "success"?
 
 ## Usage
 ```yaml
